@@ -60,7 +60,7 @@ export default function SignupPage() {
                 onClick={() => setUserType("landlord")}
                 className={`border-3 border-foreground p-4 font-mono font-bold transition-all ${
                   userType === "landlord"
-                    ? "bg-secondary text-secondary-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
+                    ? "bg-primary text-primary-foreground shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
                     : "bg-background shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]"
                 }`}
               >
@@ -69,6 +69,17 @@ export default function SignupPage() {
             </div>
           </div>
 
+          {/* Whistleblower Option */}
+          <div className="mb-6">
+            <p className="text-xs text-muted-foreground mb-2">Or earn money reporting vacant apartments:</p>
+            <Link href="/whistleblower/signup">
+              <Button className="w-full border-3 border-foreground bg-secondary px-4 py-3 font-mono font-bold transition-all shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                Become a Whistleblower
+              </Button>
+            </Link>
+          </div>
+
+          {/* Form continues below... */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="mb-2 block font-mono text-sm font-bold">Full Name</label>
