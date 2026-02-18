@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
       <div className="mx-auto max-w-4xl">
         {/* Back Button */}
         <Link href="/">
-          <button className="mb-8 flex items-center gap-2 border-3 border-foreground bg-card px-4 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+          <button className="mb-8 flex items-center gap-2 border-3 border-foreground bg-card px-4 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
             <ArrowLeft className="h-5 w-5" />
             Back to Home
           </button>
