@@ -1,15 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   CheckCircle,
   XCircle,
   AlertCircle,
   Eye,
-  Lock,
-  Zap,
-  Calendar,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -30,6 +26,17 @@ export default function WhistleblowerVerificationPanel() {
   const selected = selectedApplication
     ? applications.find((app) => app.id === Number(selectedApplication))
     : null;
+
+  let selectedStatusBgClass = "";
+  if (selected) {
+    if (selected.status === "pending") {
+      selectedStatusBgClass = "bg-accent";
+    } else if (selected.status === "approved") {
+      selectedStatusBgClass = "bg-secondary";
+    } else {
+      selectedStatusBgClass = "bg-destructive";
+    }
+  }
 
   const handleApprove = (id: number) => {
     // In real app, this would call an API
@@ -128,11 +135,7 @@ export default function WhistleblowerVerificationPanel() {
                   </div>
                   <div
                     className={`px-3 py-1 border-2 border-foreground font-bold text-sm ${
-                      selected.status === "pending"
-                        ? "bg-accent"
-                        : selected.status === "approved"
-                        ? "bg-secondary"
-                        : "bg-destructive"
+                      selectedStatusBgClass
                     }`}
                   >
                     {selected.status.toUpperCase()}
@@ -187,9 +190,9 @@ export default function WhistleblowerVerificationPanel() {
                       VERIFIED SIGNALS
                     </p>
                     <ul className="space-y-2">
-                      {selected.greenFlags.map((flag, idx) => (
+                      {selected.greenFlags.map((flag) => (
                         <li
-                          key={idx}
+                          key={`${selected.id}-green-${flag}`}
                           className="text-xs text-secondary flex gap-2"
                         >
                           <span className="mt-0.5">✓</span>
@@ -208,9 +211,9 @@ export default function WhistleblowerVerificationPanel() {
                       RED FLAGS
                     </p>
                     <ul className="space-y-2">
-                      {selected.redFlags.map((flag, idx) => (
+                      {selected.redFlags.map((flag) => (
                         <li
-                          key={idx}
+                          key={`${selected.id}-red-${flag}`}
                           className="text-xs text-destructive flex gap-2"
                         >
                           <span className="mt-0.5">!</span>

@@ -4,8 +4,6 @@ import Link from "next/link";
 import {
   ArrowLeft,
   DollarSign,
-  TrendingUp,
-  Calendar,
   CheckCircle,
   Clock,
 } from "lucide-react";

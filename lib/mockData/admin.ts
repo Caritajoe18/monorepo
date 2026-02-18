@@ -27,7 +27,7 @@ export const whistleblowerApplications = [
     linkedin: "https://linkedin.com/in/john-realtor",
     facebook: "https://facebook.com/johnproperty",
     instagram: "https://instagram.com/johnproperties",
-    status: "pending",
+    status: "rejected",
     appliedDate: "Dec 18, 2024",
     redFlags: [
       'Instagram bio explicitly says "Properties for rent - DM me"',

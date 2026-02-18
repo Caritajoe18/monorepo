@@ -1,8 +1,6 @@
 'use client'
 
-import React from "react"
-
-import { useState } from 'react'
+import React, { useState } from "react";
 import Link from 'next/link'
 import { ArrowLeft, Send, Mail, Phone, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -24,7 +22,7 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: React.ComponentProps<'form'>['onSubmit'] = (e) => {
     e.preventDefault()
     setSubmitted(true)
     setFormData({ name: '', email: '', phone: '', subject: '', message: '' })

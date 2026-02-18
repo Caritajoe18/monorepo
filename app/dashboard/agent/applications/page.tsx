@@ -13,7 +13,6 @@ import {
   XCircle,
   Clock,
   MapPin,
-  User,
   Calendar,
   ArrowRight,
 } from "lucide-react"
@@ -218,7 +217,7 @@ export default function AgentApplicationsPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex gap-6">
                       {/* Property Info */}
-                      <div className="flex h-24 w-24 flex-shrink-0 items-center justify-center border-3 border-foreground bg-muted">
+                      <div className="flex h-24 w-24 shrink-0 items-center justify-center border-3 border-foreground bg-muted">
                         <Building2 className="h-10 w-10 text-muted-foreground" />
                       </div>
                       <div>

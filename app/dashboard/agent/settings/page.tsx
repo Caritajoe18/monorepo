@@ -203,7 +203,7 @@ export default function AgentSettingsPage() {
                       <Textarea
                         id="bio"
                         defaultValue="Experienced property agent with 5+ years in the Lagos real estate market. Specializing in luxury apartments and commercial properties in Victoria Island, Lekki, and Ikoyi areas."
-                        className="min-h-[120px] border-3 border-foreground bg-background shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
+                        className="min-h-30 border-3 border-foreground bg-background shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
                     </div>
                   </div>

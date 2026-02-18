@@ -15,7 +15,6 @@ import {
   CheckCircle,
   Clock,
   XCircle,
-  TrendingUp,
   Star,
   Send,
   Search,

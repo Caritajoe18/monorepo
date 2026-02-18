@@ -1,8 +1,7 @@
 'use client'
 
-import React from "react"
+import React, { useState } from "react";
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, CheckCircle, Send, MapPin, Bed, Bath, Square } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -26,7 +25,7 @@ export default function AgentApplyPage() {
     postedAt: '2 days ago',
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: React.ComponentProps<'form'>['onSubmit'] = (e) => {
     e.preventDefault()
     if (!agreeToTerms) return
     setApplicationSubmitted(true)

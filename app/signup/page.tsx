@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,7 @@ export default function SignupPage() {
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: React.ComponentProps<'form'>['onSubmit'] = (e) => {
     e.preventDefault();
     // Handle signup
   };
