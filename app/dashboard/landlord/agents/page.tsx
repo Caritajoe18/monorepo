@@ -12,7 +12,6 @@ import {
   Mail,
   MoreVertical,
   UserMinus,
-  TrendingUp,
   CheckCircle,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"

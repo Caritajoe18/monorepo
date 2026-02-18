@@ -17,8 +17,6 @@ import {
   Edit,
   Trash2,
   Eye,
-  CheckCircle,
-  DollarSign,
   Menu,
   X,
 } from "lucide-react";
