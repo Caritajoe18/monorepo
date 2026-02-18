@@ -11,12 +11,8 @@ import {
   Bed,
   Bath,
   Square,
-  Calendar,
-  DollarSign,
-  FileText,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
 import { DashboardHeader } from "@/components/dashboard-header"
 
 const properties = [
@@ -154,7 +150,7 @@ export default function ApplicationPage() {
                   <div className="space-y-2 text-muted-foreground">
                     <div className="flex justify-between">
                       <span>Application ID:</span>
-                      <span className="font-mono font-bold">#APP-2025-{Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
+                      <span className="font-mono font-bold">#APP-2025-{Math.random().toString(36).slice(2, 11).toUpperCase()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Monthly Payment:</span>
@@ -169,12 +165,12 @@ export default function ApplicationPage() {
 
                 <div className="flex flex-col gap-3 md:flex-row">
                   <Link href="/dashboard/tenant" className="flex-1">
-                    <Button className="w-full border-3 border-foreground bg-primary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                    <Button className="w-full border-3 border-foreground bg-primary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                       Back to Dashboard
                     </Button>
                   </Link>
                   <Link href="/properties" className="flex-1">
-                    <Button className="w-full border-3 border-foreground bg-secondary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                    <Button className="w-full border-3 border-foreground bg-secondary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                       Browse More Properties
                     </Button>
                   </Link>
@@ -196,7 +192,7 @@ export default function ApplicationPage() {
           <div className="mx-auto max-w-2xl">
             {/* Back Button */}
             <Link href={`/calculator?amount=${annualRent}`}>
-              <button className="mb-6 flex items-center gap-2 border-3 border-foreground bg-card px-4 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+              <button className="mb-6 flex items-center gap-2 border-3 border-foreground bg-card px-4 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                 <ArrowLeft className="h-5 w-5" />
                 Back to Calculator
               </button>
@@ -320,7 +316,7 @@ export default function ApplicationPage() {
             {/* Action Buttons */}
             <div className="mt-6 flex flex-col gap-3 md:flex-row">
               <Link href={`/calculator?amount=${annualRent}`} className="flex-1">
-                <Button className="w-full border-3 border-foreground bg-card py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                <Button className="w-full border-3 border-foreground bg-card py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                   <ArrowLeft className="mr-2 h-5 w-5" />
                   Go Back
                 </Button>
@@ -329,7 +325,7 @@ export default function ApplicationPage() {
               <button
                 onClick={() => setIsConfirmed(true)}
                 disabled={!hasAgreed}
-                className="flex-1 border-3 border-foreground bg-primary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 border-3 border-foreground bg-primary py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Confirm Application
               </button>

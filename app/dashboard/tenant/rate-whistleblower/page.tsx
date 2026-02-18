@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Star, CheckCircle, MessageSquare } from "lucide-react";
+import { ArrowLeft, Star, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 
 export default function RateWhistleblowerPage() {
   const [step, setStep] = useState<"select" | "rate" | "confirmation">(
@@ -131,8 +130,8 @@ export default function RateWhistleblowerPage() {
           {step === "rate" && currentWhistleblower && (
             <Card className="border-3 border-foreground p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
               <div className="mb-6">
-                <Link
-                  href="#"
+                <button
+                  type="button"
                   onClick={() => {
                     setStep("select");
                     setSelectedWhistleblower(null);
@@ -143,7 +142,7 @@ export default function RateWhistleblowerPage() {
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back
-                </Link>
+                </button>
 
                 <div className="border-3 border-foreground bg-muted p-4 mb-6">
                   <p className="text-sm text-muted-foreground mb-2">
@@ -207,14 +206,18 @@ export default function RateWhistleblowerPage() {
 
               {/* Written Review */}
               <div className="mb-6">
-                <label className="text-sm font-bold mb-2 block">
+                <label
+                  htmlFor="whistleblower-review"
+                  className="text-sm font-bold mb-2 block"
+                >
                   Write a Review (Optional)
                 </label>
                 <textarea
+                  id="whistleblower-review"
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
                   placeholder="Share your experience with this whistleblower..."
-                  className="w-full border-3 border-foreground px-3 py-3 font-bold bg-background min-h-[120px]"
+                  className="w-full border-3 border-foreground px-3 py-3 font-bold bg-background min-h-30"
                   maxLength={500}
                   rows={5}
                 />
@@ -226,7 +229,7 @@ export default function RateWhistleblowerPage() {
               <Button
                 onClick={handleSubmitRating}
                 disabled={rating === 0}
-                className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full border-3 border-foreground bg-primary px-6 py-6 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Submit Rating
               </Button>

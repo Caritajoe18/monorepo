@@ -15,11 +15,7 @@ import {
   AlertCircle,
   ArrowRight,
   MapPin,
-  Bed,
-  Bath,
-  User,
   FileText,
-  Wallet,
   Menu,
   X,
 } from "lucide-react";
@@ -46,28 +42,28 @@ const currentLease = {
   agent: { name: "Adebayo Johnson", avatar: "AJ" },
 };
 
-type Payment =
-  | {
-      month: string;
-      amount: number;
-      status: "paid";
-      paidDate: string;
-    }
+type PaymentItem =
   | {
       month: string;
       amount: number;
       status: "upcoming" | "pending";
       dueDate: string;
+    }
+  | {
+      month: string;
+      amount: number;
+      status: "paid";
+      paidDate: string;
     };
 
-const paymentSchedule: Payment[] = [
+const paymentSchedule: PaymentItem[] = [
   { month: "Jan 2025", amount: 215000, status: "upcoming", dueDate: "Jan 15" },
   { month: "Feb 2025", amount: 215000, status: "pending", dueDate: "Feb 15" },
   { month: "Mar 2025", amount: 215000, status: "pending", dueDate: "Mar 15" },
   { month: "Apr 2025", amount: 215000, status: "pending", dueDate: "Apr 15" },
 ];
 
-const pastPayments: Payment[] = [
+const pastPayments: PaymentItem[] = [
   { month: "Dec 2024", amount: 215000, status: "paid", paidDate: "Dec 12" },
   { month: "Nov 2024", amount: 215000, status: "paid", paidDate: "Nov 14" },
   { month: "Oct 2024", amount: 215000, status: "paid", paidDate: "Oct 13" },
@@ -97,6 +93,46 @@ export default function TenantDashboard() {
     }).format(amount);
   };
 
+  const getPaymentHistoryPresentation = (payment: PaymentItem) => {
+    const isPaid = payment.status === "paid";
+    const isUpcoming = payment.status === "upcoming";
+
+    let iconContainerClassName = "bg-muted";
+    if (isPaid) {
+      iconContainerClassName = "bg-secondary";
+    } else if (isUpcoming) {
+      iconContainerClassName = "bg-primary";
+    }
+
+    let detailText = "";
+    if (isPaid) {
+      detailText = `Paid on ${payment.paidDate}`;
+    } else {
+      detailText = `Due ${payment.dueDate}`;
+    }
+
+    let statusClassName = "text-muted-foreground";
+    if (isPaid) {
+      statusClassName = "text-secondary";
+    } else if (isUpcoming) {
+      statusClassName = "text-primary";
+    }
+
+    let statusLabel = "Pending";
+    if (isPaid) {
+      statusLabel = "Paid";
+    } else if (isUpcoming) {
+      statusLabel = "Due Soon";
+    }
+
+    return {
+      detailText,
+      iconContainerClassName,
+      statusClassName,
+      statusLabel,
+    };
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader />
@@ -111,7 +147,9 @@ export default function TenantDashboard() {
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div
+        <button
+          type="button"
+          aria-label="Close sidebar"
           className="fixed inset-0 z-40 bg-foreground/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -168,14 +206,6 @@ export default function TenantDashboard() {
             >
               <MessageSquare className="h-5 w-5" />
               Rate Whistleblower
-            </Link>
-            <Link
-              href="/dashboard/tenant/settings"
-              className="flex items-center gap-3 border-3 border-foreground bg-card p-3 font-bold transition-all hover:bg-muted hover:shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <Settings className="h-5 w-5" />
-              Settings
             </Link>
             <Link
               href="/messages"
@@ -387,7 +417,7 @@ export default function TenantDashboard() {
                   ))}
                 </div>
 
-                <Button className="mt-4 w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                <Button className="mt-4 w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                   Make Payment
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -401,19 +431,19 @@ export default function TenantDashboard() {
               <h3 className="mb-6 text-lg font-bold">Payment History</h3>
 
               <div className="space-y-3">
-                {[...pastPayments, ...paymentSchedule].map((payment, index) => (
+                {[...pastPayments, ...paymentSchedule].map((payment) => (
+                  (() => {
+                    const presentation = getPaymentHistoryPresentation(payment);
+
+                    return (
                   <div
-                    key={index}
+                    key={`${payment.month}-${payment.amount}-${payment.status}-${"dueDate" in payment ? payment.dueDate : payment.paidDate}`}
                     className="flex items-center justify-between border-b-2 border-foreground/10 pb-3 last:border-0"
                   >
                     <div className="flex items-center gap-4">
                       <div
                         className={`flex h-10 w-10 items-center justify-center border-2 border-foreground ${
-                          payment.status === "paid"
-                            ? "bg-secondary"
-                            : payment.status === "upcoming"
-                              ? "bg-primary"
-                              : "bg-muted"
+                          presentation.iconContainerClassName
                         }`}
                       >
                         {payment.status === "paid" ? (
@@ -425,11 +455,7 @@ export default function TenantDashboard() {
                       <div>
                         <p className="font-bold">{payment.month}</p>
                         <p className="text-sm text-muted-foreground">
-                          {"paidDate" in payment
-                            ? `Paid on ${payment.paidDate}`
-                            : "dueDate" in payment
-                              ? `Due ${payment.dueDate}`
-                              : null}
+                          {presentation.detailText}
                         </p>
                       </div>
                     </div>
@@ -439,21 +465,15 @@ export default function TenantDashboard() {
                       </p>
                       <span
                         className={`text-sm font-bold ${
-                          payment.status === "paid"
-                            ? "text-secondary"
-                            : payment.status === "upcoming"
-                              ? "text-primary"
-                              : "text-muted-foreground"
+                          presentation.statusClassName
                         }`}
                       >
-                        {payment.status === "paid"
-                          ? "Paid"
-                          : payment.status === "upcoming"
-                            ? "Due Soon"
-                            : "Pending"}
+                        {presentation.statusLabel}
                       </span>
                     </div>
                   </div>
+                    );
+                  })()
                 ))}
               </div>
             </Card>

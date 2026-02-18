@@ -147,24 +147,27 @@ export default function TenantSettingsPage() {
 
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="font-bold">Full Name</Label>
+                  <Label htmlFor="full-name" className="font-bold">Full Name</Label>
                   <Input
+                    id="full-name"
                     defaultValue="Ngozi Adekunle"
                     className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="font-bold">Occupation</Label>
+                  <Label htmlFor="occupation" className="font-bold">Occupation</Label>
                   <Input
+                    id="occupation"
                     defaultValue="Software Engineer"
                     className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="font-bold">Email Address</Label>
+                  <Label htmlFor="email" className="font-bold">Email Address</Label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                     <Input
+                      id="email"
                       type="email"
                       defaultValue="ngozi.a@email.com"
                       className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
@@ -172,20 +175,22 @@ export default function TenantSettingsPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="font-bold">Phone Number</Label>
+                  <Label htmlFor="phone" className="font-bold">Phone Number</Label>
                   <div className="relative">
                     <Phone className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
                     <Input
+                      id="phone"
                       defaultValue="+234 801 234 5678"
                       className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                     />
                   </div>
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <Label className="font-bold">Current Address</Label>
+                  <Label htmlFor="address" className="font-bold">Current Address</Label>
                   <div className="relative">
                     <MapPin className="absolute left-4 top-4 h-5 w-5 text-muted-foreground" />
                     <Input
+                      id="address"
                       defaultValue="15 Admiralty Way, Lekki Phase 1, Lagos"
                       className="border-3 border-foreground bg-background py-5 pl-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                     />
@@ -194,7 +199,7 @@ export default function TenantSettingsPage() {
               </div>
 
               <div className="mt-6 flex justify-end">
-                <Button className="border-3 border-foreground bg-primary px-6 py-5 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                <Button className="border-3 border-foreground bg-primary px-6 py-5 font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                   <Save className="mr-2 h-4 w-4" />
                   Save Changes
                 </Button>
@@ -238,9 +243,10 @@ export default function TenantSettingsPage() {
                   <h3 className="font-bold">Change Password</h3>
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label>Current Password</Label>
+                      <Label htmlFor="current-password">Current Password</Label>
                       <div className="relative">
                         <Input
+                          id="current-password"
                           type={showPassword ? "text" : "password"}
                           className="border-3 border-foreground bg-background py-5 pr-12 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                         />
@@ -255,15 +261,17 @@ export default function TenantSettingsPage() {
                     </div>
                     <div />
                     <div className="space-y-2">
-                      <Label>New Password</Label>
+                      <Label htmlFor="new-password">New Password</Label>
                       <Input
+                        id="new-password"
                         type="password"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label>Confirm New Password</Label>
+                      <Label htmlFor="confirm-new-password">Confirm New Password</Label>
                       <Input
+                        id="confirm-new-password"
                         type="password"
                         className="border-3 border-foreground bg-background py-5 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)]"
                       />

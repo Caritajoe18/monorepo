@@ -12,11 +12,9 @@ import {
   Clock,
   CheckCircle,
   AlertCircle,
-  ArrowRight,
   FileText,
   Wallet,
   Plus,
-  TrendingUp,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -201,9 +199,9 @@ export default function TenantPaymentsPage() {
                 <Card className="border-3 border-foreground p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
                   <h3 className="mb-6 text-lg font-bold">Payment Schedule</h3>
                   <div className="space-y-3">
-                    {paymentSchedule.map((payment, index) => (
+                    {paymentSchedule.map((payment) => (
                       <div
-                        key={index}
+                        key={`${payment.month}-${payment.dueDate}-${payment.amount}`}
                         className={`flex items-center justify-between border-3 border-foreground p-4 ${
                           payment.status === "upcoming" ? "bg-primary/10" : "bg-card"
                         }`}
@@ -254,7 +252,7 @@ export default function TenantPaymentsPage() {
                   )}
                 </div>
 
-                <Button className="mb-4 w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                <Button className="mb-4 w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                   <Wallet className="mr-2 h-4 w-4" />
                   Pay from Wallet
                 </Button>
@@ -281,9 +279,9 @@ export default function TenantPaymentsPage() {
             <Card className="border-3 border-foreground p-6 shadow-[4px_4px_0px_0px_rgba(26,26,26,1)]">
               <h3 className="mb-6 text-lg font-bold">Payment History</h3>
               <div className="space-y-3">
-                {pastPayments.map((payment, index) => (
+                {pastPayments.map((payment) => (
                   <div
-                    key={index}
+                    key={`${payment.month}-${payment.paidDate}-${payment.amount}`}
                     className="flex items-center justify-between border-b-2 border-foreground/10 pb-3 last:border-0"
                   >
                     <div className="flex items-center gap-4">
@@ -320,8 +318,9 @@ export default function TenantPaymentsPage() {
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label className="font-bold">Top Up Amount</Label>
+                    <Label htmlFor="top-up-amount" className="font-bold">Top Up Amount</Label>
                     <Input
+                      id="top-up-amount"
                       type="number"
                       value={topUpAmount}
                       onChange={(e) => setTopUpAmount(e.target.value)}
@@ -340,7 +339,7 @@ export default function TenantPaymentsPage() {
                       </button>
                     ))}
                   </div>
-                  <Button className="w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                  <Button className="w-full border-3 border-foreground bg-primary font-bold shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                     <Plus className="mr-2 h-4 w-4" />
                     Top Up Wallet
                   </Button>

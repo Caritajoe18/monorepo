@@ -255,12 +255,15 @@ export default function TenantLeasePage() {
                   {leaseDetails.documents.map((doc) => (
                     <div
                       key={doc.id}
-                      className="flex items-center justify-between border-3 border-foreground bg-card p-4 transition-all hover:bg-muted cursor-pointer"
-                      onClick={() =>
-                        setSelectedDocument(getDocumentObject(doc.name))
-                      }
+                      className="flex w-full items-center justify-between border-3 border-foreground bg-card p-4 text-left transition-all hover:bg-muted"
                     >
-                      <div className="flex items-center gap-4 flex-1">
+                      <button
+                        type="button"
+                        className="flex flex-1 items-center gap-4 text-left"
+                        onClick={() =>
+                          setSelectedDocument(getDocumentObject(doc.name))
+                        }
+                      >
                         <div className="flex h-10 w-10 items-center justify-center border-2 border-foreground bg-muted shrink-0">
                           <FileText className="h-5 w-5" />
                         </div>
@@ -270,13 +273,12 @@ export default function TenantLeasePage() {
                             {doc.date} · {doc.size} · {doc.status}
                           </p>
                         </div>
-                      </div>
+                      </button>
                       <Button
-                        className="border-2 border-foreground bg-primary px-4 py-2 font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedDocument(getDocumentObject(doc.name));
-                        }}
+                        className="border-2 border-foreground bg-primary px-4 py-2 font-bold shadow-[2px_2px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0px_0px_rgba(26,26,26,1)]"
+                        onClick={() =>
+                          setSelectedDocument(getDocumentObject(doc.name))
+                        }
                       >
                         <FileText className="mr-2 h-4 w-4" />
                         View
@@ -328,9 +330,9 @@ export default function TenantLeasePage() {
                       {/* Document Sections */}
                       <div className="space-y-6">
                         {selectedDocument.content.sections.map(
-                          (section, idx) => (
+                          (section) => (
                             <div
-                              key={idx}
+                              key={section.title}
                               className="border-l-4 border-primary pl-4"
                             >
                               <h3 className="font-bold text-lg mb-2">
@@ -343,9 +345,9 @@ export default function TenantLeasePage() {
                               )}
                               {"items" in section && section.items && (
                                 <ul className="space-y-2">
-                                  {section.items.map((item, itemIdx) => (
+                                  {section.items.map((item) => (
                                     <li
-                                      key={itemIdx}
+                                      key={`${section.title}:${item}`}
                                       className="flex gap-3 text-sm text-muted-foreground"
                                     >
                                       <span className="font-bold text-primary">
@@ -363,7 +365,7 @@ export default function TenantLeasePage() {
 
                       {/* Modal Footer */}
                       <div className="border-t-3 border-foreground pt-4 flex gap-3">
-                        <Button className="flex-1 border-2 border-foreground bg-primary py-3 font-bold shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
+                        <Button className="flex-1 border-2 border-foreground bg-primary py-3 font-bold shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] transition-all hover:translate-x-px hover:translate-y-px hover:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)]">
                           <Download className="mr-2 h-4 w-4" />
                           Download PDF
                         </Button>
